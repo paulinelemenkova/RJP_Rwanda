@@ -157,22 +157,31 @@ Figures 6 – 9 demonstrate the series of the geomorphometric maps of Rwanda sho
 
 Figure 9 shows the hillshade visualization map of Rwanda with artificial illumination of the light source modeled using previously calculated slope and aspect based on DEM SRTM-90 of Rwanda. Hillshade gradient was derived using a standard R algorithm of geomorphometric modeling, then visualized with a 'tmap' package. The comparative analysis of the geomorphometric maps of Rwanda was also tested by visual overlay of the map series presented in the same projection and spatial extent. The hillshade illustrating vertical dissection of the terrain of Rwanda was mapped using R scripting as deviation of elevation, slope and aspect and presented in Figure 9.
 
-\section{}
+\section{Conclusion and Recommendation}
 
-\section{}
-	
+Identification of active seismicity, earthquakes and volcanoes in Rwanda is of utmost importance not only for pure Earth sciences (geology, tectonics and volcanology) but also for social aspects of risk disasters (hazards prevention and prognosis, assessment of impact after the events, evaluation of the magnitude and locations of the earthquakes). For these reasons, selecting advanced cartographic methods and optimal software for effective data processing mapping and visualization is a challenging task in view of the variety of the existing GIS applications in geosciences [48–56]. 
+
+A method for precise and effective scripting based mapping by GMT and R is proposed in this paper with a case of Rwanda for visualizing seismicity in the East African Rift region in comparison with geophysical and topographic setting. The volcanic eruptions and earthquakes in Rwanda were ascertained and visualized using IRIS dataset for 1977 to 2020, topographic mapping based on the GEBCO grid, geodetic and geophysical data (geoid and gravity grids) in comparison with the geomorphometric models of the terrain relief derivatives (slopes, aspect, hillshade and DEM).
+
+Comparison of the scripting GMT and R approaches with the classic geoinformation methods of plotting performed by means of GIS can suggest the following advantages: i) increased speed and precision in mapping due to the automated workflow and repeatability of scripts; ii) improved cartographic functionality achieved due to the extended possibilities of GMT (fine tuning of mapping design, a wide variety of color palettes, variability of visualization elements: lines, objects, translucency of layers, adjustment of projections, etc); iii) integrated data processing due to the compatibility with GDAL and extended list of applicable raster and vector data formats. 
+
+Even if some data can be mapping using traditional GIS with good accuracy [57–59], mapping processing in GIS cannot be completely automated as much as in GMT because individual map layouts in GIS should be prepared manually for each case which necessarily required additional data processing. In contrast, scripting enables re-using of scripts which automates the mapping procedure through the machine learning approach. Ascertaining the correlation between the seismicity in Rwanda, topography, geophysical geoid and gravity anomalies fields was possible using scripting GMT and R methods of machine based mapping. Furthermore, the paper applied high-resolution reliable datasets to demonstrate association of geology and seismicity with geophysical and topographic setting.
+
+Automated data processing and statistical models are widely used in geosciences [60–67]. These and other papers concern many research questions about effective data visualization and modeling, data comparison and correlation, while mapping and cartographic plotting remain to be addressed. Cartographic questions of this paper that contributes to the existing pool of GIS based research on Rwanda include, besides geophysical and seismic analysis, specific issues of scripting approach to data processing, using a variety of GMT modules and R functions for data visualization. These include, among others, for example, design of symbols and map layouts, location and placements of cartographic elements, presenting different thematic overlays to assess correlation between the seismic, geophysical and topographic setting in Rwanda, determining optimal color palettes that are more suitable for depicting continuous geophysical and topographic data and discrete scatterplot seismic data, analysis of the data reliability, actuality and quality. 
+
+Presented scripting approach of GMT and R proposes the extension of the visualization concepts to geophysical and seismic maps, for example, re-application of scripts using the template for gravity and geoid models increases the speed and quality and precision of data processing through the machine based graphics. In turn, better-quality graphics and cartographic layouts help better understanding of the correlations between the geologic and geophysical phenomena of the East African Rift (its western branch of the Albertine Rift) extending in the west of Rwanda, as well as understand the variability in the western and eastern parts of the country. 
+
+Finally, the visualized high-quality georeferenced reliable  geoinformation on Rwanda helps not only in studies of Earth science but also for environmental and sustainable development of the country by providing thematic maps of the topography and geologic setting that might have an impact on the social and environmental aspects of Rwanda. In this regards, this paper contributed to the multi-disciplinary studies of Rwanda environment, natural and Earth sciences and at the same time, presented new methodology of the cartographic data processing using machine learning approach. 	
 
 \begin{acknowledgement}
-The author(s) would like to dedicate this class to the memory of \linebreak
-\framebox{Acad. Dr. Horia Scutaru} a great scientist and supporter of innovation at RJP. A.T.G. would like to acknowledge the help received from Mrs. Margareta Oancea and the members of the technical department at the Romanian Academy Publishing House, in principal, in specifying a \LaTeX\ format that matches as close as possible the MS Word template that RJP uses officially, but also for carefully and patiently correcting the various versions produced during development. Last but not least, the authors owe gratitude to those who made possible that Donald Knuth's \cite{nobelphys1} complex but rigorous \TeX \cite{nobelphys3} evolve into the friendlier \LaTeXe (of course names like Leslie Lamport \cite{nobelphys2} or the people in the \LaTeX3 project led by Frank Mittelbach \cite{fields1,fields2,fields3} come to mind). A big ``Thanks!'' goes to all the web sites, forums and message lists maintainers out there on the internet for the 
-documentation and examples they shared with the world in the obvious effort of teaching people about the ways and wonders of beautiful typesetting (a small part of these resources are in Refs. 
+The author would like to thank the editors and anonymous reviewers of the \emph{Romanian Journal of Physics} for the review and comments on this manuscript. 
 \end{acknowledgement}
 
 \begin{thebibliography}{99}
 
 \bibitem{nobelphys1}F. Guinea, M. I. Katsnelson, A. K. Geim, Nature Physics \textbf{6}, 30--33 (2010).
 
-\bibitem{nobelphys2}A. K. Geim, Scienc	e \textbf{324}, 1530--1534 (2009).
+\bibitem{nobelphys2}A. K. Geim, Science \textbf{324}, 1530--1534 (2009).
 
 \bibitem{nobelphys3}D. C. Elias, R. R. Nair, T. M. G. Mohiuddin, S. V. Morozov, P. Blake, M. P. Halsall, A. C. Ferrari, D. W. Boukhvalov, M. I. Katsnelson, A. K. Geim, K. S. Novoselov, Science \textbf{323}, 610--613 (2009).
 
