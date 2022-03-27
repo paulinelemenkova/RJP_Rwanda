@@ -1,0 +1,111 @@
+\documentclass[myclassdoc,debug]{rjparticle}
+%use the following command when typesetting your paper:
+%\documentclass{rjparticle}
+\usepackage{graphicx}
+
+\title{Command-line cartographic data processing for geophysical plotting of Rwanda using GMT and R scripts} 
+
+\author[1]{P. Lemenkova}
+
+\affil[1]{``Horia Hulubei'' National R\&D Institute for Physics and Nuclear Engineering,\\
+Reactorului 30, RO-077125, P.O.B. MG-6, M\u{a}gurele-Bucharest, Romania, EU\\
+\email{redactor.rjp@gmail.com} (corresponding author)}
+
+\keywords{Geophysics, shell script, cartography, GMT, R language, Africa}
+
+\pacs{01.30.-y, 01.30.Ww, 01.30.Xx, 99.00.Bogus}
+
+\hyphenation{rjp-ar-ti-cle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Please, do not remove the following lines!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\RJPVolume{63}{2018}
+%\RJPNumber{1-2}
+%\RJPPages{}{}
+\columntitle{Command-line cartographic data processing}
+%\date{}
+%\dedication{}
+%\domaintitle{}
+%\keywords{}
+%\pacs{01.30.-y, 01.30.Ww, 01.30.Xx, 99.00.Bogus}
+
+\begin{document}
+
+\lstset{%
+basicstyle=\small,
+language=[AlLaTeX]TeX,
+columns=fullflexible,
+%keepspaces=true,
+showspaces=true,
+showstringspaces=false,
+keywordstyle=[2]\ttfamily,
+identifierstyle=,
+texcsstyle=*\ttfamily,
+commentstyle=\color{gray},
+string=[s]<>,
+morestring=[b]',
+stringstyle=\emph,
+breaklines=true,
+deletekeywords={list},
+moretexcs={authnote,keywords,pacs},
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+\begin{abstract}
+This paper presents a case of script-based cartographic data processing by GMT and and R language for geophysical mapping. The study area is located in Rwanda, Africa, notable for complex geological setting due to the location within East African Rift area. Active continental zone of the East African Rift extending in western Rwanda has importance on the seismicity of the country. It affects gravity anomaly and influences the distribution and shape of the geomorphological landforms reflected in the topography of Rwanda. The aim is to apply command-line techniques of cartography for mapping. The geophysical goal is to highlight correlations between the distribution, depth and magnitudes of earthquakes, topography and geophysics. Visualizing geophysical anomalies and topography for morphometric setting of Rwanda's terrain supports geological monitoring. Data include GEBCO, EGM-2008, satellite derived gravity and SRTM. Nine new thematic maps on Rwanda are presented and evaluated to demonstrates the effects of East African Ridge on regional distribution of the earthquakes and volcanos in Rwanda.  The maps demonstrated accurate and effective mapping by means of R and GMT scripts. Regional analysis shows that the distribution of earthquakes and volcanoes is the highest in the western part of Rwanda and the lowest in the east proving the correlation of the active seismicity with tectonic setting and geology of the country. The console-based scripts of R and GMT are presented with provided link to the author's GitHub repository with a full access to the codes.
+\end{abstract}
+
+\section{Introduction}
+Geophysical and seismic studies require visualization of the recent earthquake events according to their magnitude, focal depth and distribution of sources. However, such mapping presents difficulties as methods of cartographic data processing are diverse due to the variety of the existing GIS, e.g. the most well known software widely used in geosciences: ArcGIS, MapINFO, Erdas Imagine, ENVI, Idrisi, SAGA GIS, GRASS GIS, QGIS. These GIS and statistical methods of data processing are widely used in geology [1–11]. At the same time, approaches of data modeling, formatting and converting present inherent problems. Besides the traditional GIS, programming languages and scripting console-based methods are applicable for processing geospatial data and cartographic visualization. Nevertheless, the possible application of GIS often has certain constrains in utilization of menu and large amount of handmade cartographic routine and adjustments compared to the automated methods of data processing and machine learning. 	
+	
+The geophysical setting of the Earth and geoid fields change in values over space due to the variety of factors. These include lithological  (different types and density of rocks), geological (extents of various provinces and units) and tectonic setting (distribution of the East African Rift, and specifically, its western branch of the Albertine Rift in Rwanda). These aspects result in spatial variations in seismicity and distribution of earthquakes in Rwanda with notable increase of seismicity in the west of the country in the proximity of the Albertine Rift and Kivu Lake. Such geophysical variations and correlations with the topography of the country have thereby been visualized using advanced cartographic methods, as described in existing earlier publications on seismicity in Rwanda and Lake Kivu [12–16]. 
+
+GIS methods often entail difficulties in data formatting, converting, exporting data, preparation of layouts and other manipulations with geodata because standards differ in various GIS which requires individual adjustments in each case of mapping. Moreover, during seismic interpretation and mapping, one frequently encounters difficulties in collecting and converting data, processing the tabular datasets (.xls to .ngdc or .gmt formats) and so on. 	
+
+Although Incorporated Research Institutions for Seismology (IRIS) Consortium [17–19] have made large efforts in exploring the Earth's interior through the collection and distribution of seismographic data, processing and visualization of these data requires additional skills and mapping. This paper aims to contribute to such tasks by introducing the GMT and R scripting for geophysical, topographic and seismic mapping of Rwanda. 
+
+Script-based cartographic methods of Generic Mapping Tools (GMT) represents an alternative to the menu-based traditional GIS. Thus, geophysical maps plotted using GMT scripting approach can be prepared using templates of scripts which significantly automates the workflow and acquires more precision and aesthetics through the machine-made graphics [20–23]. Because the application of such tools as R or GMT requires certain methodology in coding which complicates its direct application and requires explanation, this paper presents example of coding with comments on usability.
+
+Applying scripting approaches of R programming is possible not only for statistical analysis and tabular data processing [24–25] but also for mapping geospatial data. Both GMT and R scripts can be prepared and written directly in the Xcode and then run from the RStudio (for R) or the GMT environments, which is convenient for mapping. One shortcoming inherent in the GMT and R approach, however, consists in the steep learning curve of scripting, which however can be generally mastered using existing documentation [26–28] or examples of technical papers on scripting cartography [29–31].
+
+Notable for high seismicity and complex geologic setting caused by the location in the East African Rift, Rwanda has a varied topographic relief and compact spatial extent of the country. It present an excellent target in an attempt to demonstrate geophysical mapping using scripting methodology by GMT and R for a combined cartographic visualization through a series of the thematic maps including seismicity and topographic setting. In fact, the IRIS data for the last ca. 50 years (since 1977) have been reported regular seismic events, earthquakes with magnitude from 3.7 to 6.2 and several volcanoes near the Lake Kivu in W and NW regions of the country. 
+
+Although the majority of the earthquake in Rwanda have been estimated at depths not exceeding 10 km according to IRIS, some selected events were recorded at deeper depths, such as 11 (earthquake in 2015, 37km N of Cyangugu, Rwanda), selected events in the Kivu Lake including region of the Democratic Republic of the Congo, e.g. earthquakes at depth 33 km on 21 May and July 7, 1981, earthquake at depth 21 km in 6 January 1977, Lac Kivu region, Democratic Republic of the Congo. 
+
+This paper attempted to provide the variability of the seismic events in context with geophysical and topographic settings of Rwanda dating from 1977 to 2020, to evaluate the effects of locality and tectonics (proximity of the Albertine Rift) on distribution and magnitude of earthquakes and location of volcanos in Rwanda.
+	
+\section{Study Area}
+	
+	
+	
+	
+	
+	
+	
+	
+
+\begin{acknowledgement}
+The author(s) would like to dedicate this class to the memory of \linebreak
+\framebox{Acad. Dr. Horia Scutaru} a great scientist and supporter of innovation at RJP. A.T.G. would like to acknowledge the help received from Mrs. Margareta Oancea and the members of the technical department at the Romanian Academy Publishing House, in principal, in specifying a \LaTeX\ format that matches as close as possible the MS Word template that RJP uses officially, but also for carefully and patiently correcting the various versions produced during development. Last but not least, the authors owe gratitude to those who made possible that Donald Knuth's \cite{nobelphys1} complex but rigorous \TeX \cite{nobelphys3} evolve into the friendlier \LaTeXe (of course names like Leslie Lamport \cite{nobelphys2} or the people in the \LaTeX3 project led by Frank Mittelbach \cite{fields1,fields2,fields3} come to mind). A big ``Thanks!'' goes to all the web sites, forums and message lists maintainers out there on the internet for the 
+documentation and examples they shared with the world in the obvious effort of teaching people about the ways and wonders of beautiful typesetting (a small part of these resources are in Refs. 
+\end{acknowledgement}
+
+\begin{thebibliography}{99}
+
+\bibitem{nobelphys1}F. Guinea, M. I. Katsnelson, A. K. Geim, Nature Physics \textbf{6}, 30--33 (2010).
+
+\bibitem{nobelphys2}A. K. Geim, Science \textbf{324}, 1530--1534 (2009).
+
+\bibitem{nobelphys3}D. C. Elias, R. R. Nair, T. M. G. Mohiuddin, S. V. Morozov, P. Blake, M. P. Halsall, A. C. Ferrari, D. W. Boukhvalov, M. I. Katsnelson, A. K. Geim, K. S. Novoselov, Science \textbf{323}, 610--613 (2009).
+
+\bibitem{fields1}G. Toscani, C. Villani, Comm. Math. Phys. \textbf{203}(3), 667--706 (1999).
+
+\bibitem{fields2}I.M. Gamba, V. Panferov, C. Villani, Comm. Math. Phys. \textbf{246}(3), 503--541 (2004).
+
+\bibitem{fields3}C. Villani, Rev. Matem. Iberoam. \textbf{15}(2), 335--352 (1999).
+
+\end{thebibliography}
+
+
+\end{document}
