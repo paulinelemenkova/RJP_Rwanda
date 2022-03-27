@@ -7,13 +7,14 @@
 
 \author[1]{P. Lemenkova}
 
-\affil[1]{``Horia Hulubei'' National R\&D Institute for Physics and Nuclear Engineering,\\
-Reactorului 30, RO-077125, P.O.B. MG-6, M\u{a}gurele-Bucharest, Romania, EU\\
-\email{redactor.rjp@gmail.com} (corresponding author)}
+\affil[1]{Université Libre de Bruxelles, École polytechnique de Bruxelles (EPB, Brussels Faculty of Engineering), Laboratory of Image Synthesis and Analysis.\\
+Building L, Campus de Solbosch CP131/3, Av. Franklin D. Roosevelt 50, B-1050 Brussels, Belgium.\\
+ORCID ID: https://orcid.org/0000-0002-5759-1089\\
+\email{polina.lemenkova@ulb.be; pauline.lemenkova@gmail.com} (corresponding author)}
 
 \keywords{Geophysics, shell script, cartography, GMT, R language, Africa}
 
-\pacs{01.30.-y, 01.30.Ww, 01.30.Xx, 99.00.Bogus}
+\pacs{91.10.Da, 91.10.-v, 93.30.-w, 91.60.-x, 93.85.-q, 91.10.-v, 91.10.Ws}
 
 \hyphenation{rjp-ar-ti-cle}
 
@@ -57,7 +58,14 @@ This paper presents a case of script-based cartographic data processing by GMT a
 \end{abstract}
 
 \section{Introduction}
-Geophysical and seismic studies require visualization of the recent earthquake events according to their magnitude, focal depth and distribution of sources. However, such mapping presents difficulties as methods of cartographic data processing are diverse due to the variety of the existing GIS, e.g. the most well known software widely used in geosciences: ArcGIS, MapINFO, Erdas Imagine, ENVI, Idrisi, SAGA GIS, GRASS GIS, QGIS. These GIS and statistical methods of data processing are widely used in geology [1–11]. At the same time, approaches of data modeling, formatting and converting present inherent problems. Besides the traditional GIS, programming languages and scripting console-based methods are applicable for processing geospatial data and cartographic visualization. Nevertheless, the possible application of GIS often has certain constrains in utilization of menu and large amount of handmade cartographic routine and adjustments compared to the automated methods of data processing and machine learning. 	
+Geophysical and seismic studies require visualization of the recent earthquake events according to their magnitude, focal depth and distribution of sources. However, such mapping presents difficulties as methods of cartographic data processing are diverse due to the variety of the existing GIS, e.g. the most well known software widely used in geosciences: ArcGIS, MapINFO, Erdas Imagine, ENVI, Idrisi, SAGA GIS, GRASS GIS, QGIS. These GIS and statistical methods of data processing are widely used in geology [1–11]. At the same time, approaches of data modeling, formatting and converting present inherent problems. Besides the traditional GIS, programming languages and scripting console-based methods are applicable for processing geospatial data and cartographic visualization. Nevertheless, the possible application of GIS often has certain constrains in utilization of menu and large amount of handmade cartographic routine and adjustments compared to the automated methods of data processing and scripting. 	
+
+\begin{figure}[h!tb]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig_01.jpg}
+\caption{Topographic map of Rwanda. Mapping: GMT. Source: author.}
+\label{pic1}
+\end{figure}
 	
 The geophysical setting of the Earth and geoid fields change in values over space due to the variety of factors. These include lithological  (different types and density of rocks), geological (extents of various provinces and units) and tectonic setting (distribution of the East African Rift, and specifically, its western branch of the Albertine Rift in Rwanda). These aspects result in spatial variations in seismicity and distribution of earthquakes in Rwanda with notable increase of seismicity in the west of the country in the proximity of the Albertine Rift and Kivu Lake. Such geophysical variations and correlations with the topography of the country have thereby been visualized using advanced cartographic methods, as described in existing earlier publications on seismicity in Rwanda and Lake Kivu [12–16]. 
 
@@ -66,6 +74,13 @@ GIS methods often entail difficulties in data formatting, converting, exporting 
 Although the Incorporated Research Institutions for Seismology (IRIS) Consortium [17–19] have made large efforts in exploring the Earth's interior through the collection and distribution of seismographic data, processing and visualization of these data requires additional skills and mapping. This paper aims to contribute to such tasks by introducing the GMT and R scripting for geophysical, topographic and seismic mapping of Rwanda. 
 
 Script-based cartographic methods of Generic Mapping Tools (GMT) represents an alternative to the menu-based traditional GIS. Thus, geophysical maps plotted using GMT scripting approach can be prepared using templates of scripts which significantly automates the workflow and acquires more precision and aesthetics through the machine-made graphics [20–23]. Because the application of such tools as R or GMT requires certain methodology in coding which complicates its direct application and requires explanation, this paper presents example of coding with comments on usability.
+
+\begin{figure}[h!tb]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig_02.jpg}
+\caption{Seismic map of Rwanda. Mapping: GMT. Source: author.}
+\label{pic2}
+\end{figure}
 
 Applying scripting approaches of R programming is possible not only for statistical analysis and tabular data processing [24–25] but also for mapping geospatial data. Both GMT and R scripts can be prepared and written directly in the Xcode and then run from the RStudio (for R) or the GMT environments, which is convenient for mapping. One shortcoming inherent in the GMT and R approach, however, consists in the steep learning curve of scripting, which however can be generally mastered using existing documentation [26–28] or examples of technical papers on scripting cartography [29–31].
 
@@ -79,6 +94,13 @@ This paper attempted to provide the variability of the seismic events in context
 	
 Rwanda is a country with diverse contrasting topography in its western and eastern segments. Marked by active tectonics of the East African Rift stretching in western part of the country, Rwanda is largely affected by contrasting geophysical setting with complex the geologic evolution of the region. The East African Rift system is an extensional lithosphere zone on the continent with repetitive earthquakes and continuous seismic activity caused by the distribution of tectonic faults [32]. The location of the East African Rift is caused by the lithospheric weaknesses in this region. The processes of rifting here correlate with the activation of the boundary faults. these faults accommodate basin subsidence which geomorphology can be strongly asymmetric [33].
 
+\begin{figure}[h!tb]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig_03.jpg}
+\caption{Geoid model of Rwanda. Mapping: GMT. Source: author.}
+\label{pic3}
+\end{figure}
+
 Western part of Rwanda is geographically located within the Albertine Rift Mountains that structurally belong to the East African Rift. This part of the country has the highest topographic records. The relief here is mainly presented by the hills and mountain chains (1,500 to 2,500 m). The East African Rift is the major tectonic feature of Rwanda extending in NS direction along its western border, controlling and largely affecting the seismicity of the country. Notable objects here are the Lake Kivu and the Ruzizi River, located on the border between Rwanda and Congo (DRC). The topographic elevations in the west of the country are notably higher on the westernmost part of Rwanda where the altitude drops abruptly near the shores of Lake Kivu and the Ruzizi River. Besides special geologic and tectonic setting,  the environmental mark of the Albertine Rift region is ecoregion of the tropical moist montane broadleaf forests with unique environment, which is an African biodiversity hotspot and protected area of Rwanda. 
 
 Besides unique geologic setting, Albertine Rift is the most biodiverse area on the Earth. Being one of Africa's most ecologically sensitive environment, it has 162 endemic terrestrial vertebrates and plants with threatened status on the global Red List [34]. At the same time, it is currently under severe pressure from anthropogenic activities and climate issues. Current ecological problems in Rwanda include land conversion for settlement and agricultural purposes, afforestation of some agricultural lands, decrease of some areas of the national forests [35]. 	
@@ -91,6 +113,13 @@ Eastern segment of Rwanda has notably lower in term of topographic elevations wh
 To achieve the best cartographic performance, seismic mapping and analysis of the earthquake frequency and repeatability based on IRIS must be combined with high-resolution topographic and geophysical datasets. To achieve this goal, this study applied such existing data for Rwanda region. The topographic data were taken from the existing General Bathymetric Chart of the Oceans (GEBCO) grid with 15 arc-second resolution, i.e. approximately 450 m [36–37]. 
 
 The topographic map of Rwanda is presented in Fig. 1. The earthquake events were derived from the IRIS database and plotted in Fig. 2. The Earth Gravitational Model as of 2008 (EGM-2008) presents the geoid model data [38]. The EGM-2008 was used here as the latest available version standard product of National Geospatial-Intelligence Agency (NGA), presenting geopotential model of the Earth derived as geoid reference of the WGS-84. The geoid data were applied for mapping Fig. 3. 
+
+\begin{figure}[h!tb]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig_04.jpg}
+\caption{Free-air gravity (Faye’s) map of Rwanda. Mapping: GMT. Source: author.}
+\label{pic4}
+\end{figure}
 
 The free-air gravity data in Faye’s reduction (Fig. 4) and vertical gravity (Fig. 5) are derived from the satellite data collected by the sensor on-board of the CryoSat-2 and Jason-1 satellites and available as public datasets in IMG formats ‘grav\_27.1.img’ and ‘curv\_27.1.img’ [39]. The Shuttle Radar Topography Mission (SRTM) Digital Elevation Model (DEM) with 90 m resolution is available in R package ‘raster’ used for modeling topographic relief for geomorphometric analysis of the Rwanda terrain.
 
@@ -143,17 +172,52 @@ The observed aspect statistics of the slopes of Rwanda was estimated for 8 class
 \section{Results and Discussion}
 Figure 1 visualises the topography map of Rwanda based on the GEBCO/SRTM high-resolution dataset. The topography of Rwanda was visualised and estimated by comparing these results with previous data. The results of the topographic data analysis shown variations from minimum at 806.098 m to maximum at 4359.250 m (East African Ridge) and statistical evaluation shown mean at 1662.746 m and standard deviation (StdDev) at 358.125 m. The hydrological setting of Rwanda are presented by several lakes that should be briefly noted. The Rweru Lake on the border with Burundi shown very shallow bathymetry not not exceeding 2 m. The Ihema Lake is another notable largest lake of Rwanda located on the east of the country on the border with Tanzania, within the marshland of the Kagera River. 
 
+\begin{figure}[h!tb]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig_05.jpg}
+\caption{Vertical free-air gravity (Faye’s) map of Rwanda. Mapping: R. Source: author.}
+\label{pic5}
+\end{figure}
+
 The Muhazi Lake located in the center of the country is presented by the flooded valley, extending mostly in the EW direction, with numerous tributaries in a NS direction. The Kivu Lake is one of the African Great Lakes located on the west of the country on the border with Congo DRC. Its topographic shape is mostly irregular. The lake bed is located on a rift valley of the East African Rift that is notable for slow tectonic movements being gradually pulled apart, which causes volcanic activity in the area. Lake Kivu is a fresh water lake notable for limnic gas eruptions of the dissolved carbon dioxide (CO2) which was a subject to a series of studies. Lake Kivu is situated in the proximity to the sources of natural disasters: an active volcano on Mt. Nyiragongo, an active earthquake zone along the East African Ridge and other active volcanoes in the north of Rwanda.
+
+\begin{figure}[h!tb]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig_06.jpg}
+\caption{DEM SRTM-90 elevation heights map of Rwanda. Mapping: R. Source: author.}
+\label{pic6}
+\end{figure}
 
 Figure 2 of the seismicity in Rwandan demonstrates the epicenters and magnitudes of the earthquakes recorded in IRIS database that have been visualized on a map. These are dominating in the central part of the East African Rift Valley according to the period 1977 to 2020. Approved by the previous studies [47], the location of the earthquakes is controlled by the location and extent of the East African Rift. Most of the earthquakes are situated on the faults which border the East African Rift with a few on faults which cross-sectioning the East African Rift. The analysis of spatial distribution of the seismic events and estimation of geomorphometric results indicate that the earthquakes and eruptions in Rwanda occurred dominantly in the proximity of the Albertine Rift, the western branch of the East African Rift.
 
 Figure 3 shows the geoid model of Rwanda based on the Earth Gravitational Model as of 2008 (EGM-2008). The values of the geoid anomalies over the Rwanda have values from minimal -16 to maximal 0 with the distribution of data clearly visible in EW direction with the highest values in the mountain regions in the East African Rift segments. However, the general anomaly values of geoid in Rwanda are negative which is caused by the regional differences in the Earth's gravity field caused by variations in the mass distribution and rock densities in the lithosphere. 
 
+\begin{figure}[h!tb]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig_07.jpg}
+\caption{Slope model map of Rwanda. Mapping: R. Source: author.}
+\label{pic7}
+\end{figure}
+
 Figures 4 and 5 demonstrate the geophysical data distribution of Rwanda based on the satellite derived gravity anomaly fields. Figure 4 shows Free-air gravity (Faye’s) map of Rwanda which shows the measured gravity anomaly after a free-air correction applied to correct for the elevation of the measurements. The data analysis of Figure 4 shows the following data distribution: Minimum=-73.067 mGal, Maximum=294.432 mGal, Mean=42.140 mGal, StdDev=45.560 mGal. the highest values are notable on the eastern and north-eastern borders of the Lake Kivu (over 200 mGal, orange to red colors in Figure 4) while the lowest values (-20 mGal, blue colors in Figure 4) are recorded in the east of the country. the Cyangugu region has values of around +20 mGal. 
 
 Figure 5 illustrates the distribution of the values of vertical free-air gravity model of Rwanda. Specifically, the data extent retrieved by the GDAL (gdalinfo -stats rw\_grav\_v.nc) shown that minimum is -199.742 mGal, maximum is 418.269 mGal,  mean is 5.492 and standard deviation  (StdDev) is 51.828 mGal. The comparison of these data with free-air gravity shows the vertical correction which results in wider amplitude of data distribution according to the coefficient applied in the algorithm of gravity data computation for vertical gravity anomaly. Similar tho the free-air gravity field, the vertical gravity demonstrates the highest values notable along the eastern bother of the Kivu Lake (that is, the western region of Rwanda) where the values exceed 150 mGal. Likewise, the lowest values are notable in the eastern region of the country (0 to -25 mGal, yellow colors in Figure 5) and very low values in local depressions: selected spots in Lake Kivu, Lake Burera in the north of Rwanda with values -150 (blue colors in Figure 5).
 
-Figures 6 – 9 demonstrate the series of the geomorphometric maps of Rwanda showing the derivatives of the elevation DEM analysis of Rwanda. The R package 'raster' was used to calculate three important geomorphometric variables – slope gradient, aspect of terrain of Rwanda and hillshade highlighting vertical dissection of the relief. Figure 6 shows DEM SRTM-90 elevation heights map of Rwanda. Figure 7 shows slope model map of Rwanda. Variations in the slope gradient clearly show the distribution of steep (red colors in Figure 7) to moderate and low slopes over study area (beige and khaki colors in Figure 7) in percentage (20\%, 40\%, 60\% as large intervals of data distribution). Figure 8 shows aspect model map of Rwanda. Interfluves of lakes and rivers of Rwanda with dominant soil and morphologic processes and underlying geologic rock properties  (porosity, density, lithology types)  cause variations in aspect orientation caused by local vertical soil–water movements and external exogenous effects (wind and solar factors causing erosion). 
+\begin{figure}[h!tb]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig_08.jpg}
+\caption{Aspect model map of Rwanda. Mapping: R. Source: author.}
+\label{pic8}
+\end{figure}
+
+Figures 6 – 9 demonstrate the series of the geomorphometric maps of Rwanda showing the derivatives of the elevation DEM analysis of Rwanda. The R package 'raster' was used to calculate three important geomorphometric variables – slope gradient, aspect of terrain of Rwanda and hillshade highlighting vertical dissection of the relief. Figure 6 shows DEM SRTM-90 elevation heights map of Rwanda. Figure 7 shows slope model map of Rwanda. Variations in the slope gradient clearly show the distribution of steep (red colors in Figure 7) to moderate and low slopes over study area (beige and khaki colors in Figure 7) in percentage (20\%, 40\%, 60\% as large intervals of data distribution). Figure 8 shows aspect model map of Rwanda. Interfluves of lakes and rivers of Rwanda with dominant soil and morphologic processes and underlying geologic rock properties  (porosity, density, lithology types)  cause variations in aspect orientation caused by local vertical soil–water movements and external exogenous effects (wind and solar factors causing erosion).
+
+\begin{figure}[h!tb]
+\centering
+\includegraphics[width=0.8\textwidth]{Fig_09.jpg}
+\caption{Hillshade visualization map of Rwanda. Mapping: R. Source: author.}
+\label{pic9}
+\end{figure}
 
 Figure 9 shows the hillshade visualization map of Rwanda with artificial illumination of the light source modeled using previously calculated slope and aspect based on DEM SRTM-90 of Rwanda. Hillshade gradient was derived using a standard R algorithm of geomorphometric modeling, then visualized with a 'tmap' package. The comparative analysis of the geomorphometric maps of Rwanda was also tested by visual overlay of the map series presented in the same projection and spatial extent. The hillshade illustrating vertical dissection of the terrain of Rwanda was mapped using R scripting as deviation of elevation, slope and aspect and presented in Figure 9.
 
@@ -171,7 +235,9 @@ Automated data processing and statistical models are widely used in geosciences 
 
 Presented scripting approach of GMT and R proposes the extension of the visualization concepts to geophysical and seismic maps, for example, re-application of scripts using the template for gravity and geoid models increases the speed and quality and precision of data processing through the machine based graphics. In turn, better-quality graphics and cartographic layouts help better understanding of the correlations between the geologic and geophysical phenomena of the East African Rift (its western branch of the Albertine Rift) extending in the west of Rwanda, as well as understand the variability in the western and eastern parts of the country. 
 
-Finally, the visualized high-quality georeferenced reliable  geoinformation on Rwanda helps not only in studies of Earth science but also for environmental and sustainable development of the country by providing thematic maps of the topography and geologic setting that might have an impact on the social and environmental aspects of Rwanda. In this regards, this paper contributed to the multi-disciplinary studies of Rwanda environment, natural and Earth sciences and at the same time, presented new methodology of the cartographic data processing using machine learning approach. 	
+Finally, the visualized high-quality georeferenced reliable geoinformation on Rwanda helps not only in studies of Earth science but also for environmental and sustainable development of the country by providing thematic maps of the topography and geologic setting that might have an impact on the social and environmental aspects of Rwanda. The existing GIS-based studies of Rwanda focused on geophysical mapping are restricted to the particular regions. They did not applied GMT and R based mapping of the multi-source datasets of DEM, geoid and gravity grids as thematic map series. Previous existing studies on Rwanda are not indicative of the correlation between the geophysical phenomena of Rwanda. 
+
+In contrast, this study assessed the effectiveness of R and GMT methods in cartography for retrieving high-resolution data of seismic, topographic and geophysical rasters on Rwanda. In this regards, this paper contributed to the multi-disciplinary studies of Rwanda environment, natural and Earth sciences and at the same time, presented new methodology of the cartographic data processing using scripting command-line approach for cartographic data processing. 	
 
 \begin{acknowledgement}
 The author would like to thank the editors and anonymous reviewers of the \emph{Romanian Journal of Physics} for the review and comments on this manuscript. 
