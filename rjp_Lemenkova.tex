@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{float}
 
+%%%%%%%%%%% Acronyms %%%%%%%%%%%
 \usepackage{acro}
 
 \DeclareAcronym{gebco}{
@@ -70,6 +71,7 @@
   short=IRIS,
   long=Incorporated Research Institutions for Seismology,
 }
+%%%%%%%%%%% Acronyms %%%%%%%%%%%
 
 \title{Command-line cartographic data processing for geophysical plotting of Rwanda using GMT and R scripts} 
 
@@ -147,7 +149,7 @@ The script-based cartographic method of \ac{gmt} presents an alternative to the 
 
 Applying scripting approaches of R programming is possible not only for statistical analysis and tabular data processing \cite{Lemenkova2019a,Lemenkova2021c} but also for mapping geospatial data. Both \ac{gmt} and R scripts can be prepared and written directly in the Xcode and then run from the RStudio (for R) or the \ac{gmt} environments, which is convenient for mapping. A shortcoming inherent in the \ac{gmt} and R approach, consists in the steep learning curve of scripting. This can be generally mastered using the existing documentation \cite{Wessel1991,Wessel1995,Wessel2019} or examples of papers on scripting cartography \cite{Lemenkova2019b,Lemenkova2021d,Gauger}.
 
-Notable for high seismicity and complex geologic setting caused by the location in the East African Rift, Rwanda has a varied topographic relief and compact spatial extent of the country. In such a way, it present an excellent target in an attempt to demonstrate geophysical mapping using scripting methodology by \ac{gmt} and R. Although the majority of the earthquakes in Rwanda have been estimated at depths not exceeding 10 km according to \ac{iris}, some selected events were recorded at deeper depths, such as 11 (earthquake in 2015, 37km North of Cyangugu, Rwanda), selected events in the Kivu Lake including region of \ac{drc}, e.g. earthquakes at depth 33 km on 21 May and July 7, 1981, earthquake at depth 21 km in 6 January 1977, Lac Kivu region, \ac{drc}. 
+Notable for high seismicity and complex geologic setting caused by the location in the East African Rift, Rwanda has a varied topographic relief and compact spatial extent of the country. In such a way, it present an excellent target in an attempt to demonstrate geophysical mapping using scripting methodology by \ac{gmt} and R. Although the majority of the earthquakes in Rwanda have been estimated at depths not exceeding 10 km according to \ac{iris}, some selected events were recorded at deeper depths, such as 11 (earthquake in 2015, 37km North of Cyangugu, Rwanda), selected events in the Kivu Lake including region of \ac{drc}, \emph{e.g.}, earthquakes at depth 33 km on 21 May and July 7, 1981, earthquake at depth 21 km in 6 January 1977, Lac Kivu region, \ac{drc}. 
 
 \begin{figure}[H]
 \centering
@@ -235,7 +237,7 @@ To determine the extent and values of elevations (Fig. \ref{pic6}) based on \ac{
 
 However, for a better cartographic performance, mapping was improved by using the ‘tmap’ library through applying a set of its functions. For example, to select the better colour palettes, this was achieved using a 'tmaptools::palette\_explorer()', embedded in the ‘tmap’ package of R. The visualisation of the raster grid was done by the following code for the slope: $tm\_raster(title = "Slope (0u00B0-90u00B0)", \\palette = "-Set1", style = "quantile", n = 10, \\breaks = c(5, 10, 20, 30, 40, 50, 60, 70, 80, 90), legend.show = T, legend.hist = T, \\legend.hist.z=0,)$. In this code, the steepness variations of the slope were estimated for the ten classes in the study area of Rwanda. 
 
-The observed aspect statistics of the slopes of Rwanda was estimated for the eight classes, according to the geographic orientation of \ac{wesn} and their combinations (SW-SE-NE-NW) and compared, accordingly. The histogram is presented in Fig. \ref{pic8}. The code included the following commands: $‘tm\_raster(title = "Aspect", palette = "-Spectral", style = "quantile", n = 8, legend.show = T, \\legend.hist = T, legend.hist.z=0,)’ and ‘ tm_compass(type = "rose", position=c("right", "top"), size = 7.0)’$ for compass placement. \\Using the $'tm\_graticules'$ the ticks were added on the maps in Fig. \ref{pic6}, \ref{pic7}, \ref{pic8} and \ref{pic9}: $tm\_graticules(ticks = T, lines = T, col = "azure3", lwd = 1, labels.size = 1.0, labels.rot = c(15, 15), labels.col = "black")$. Final export of the resulting graphics has been done using the following code snippet: $‘tmap_save’ function: \\‘tmap\_save(map4, "Rwanda_Elevation.jpg", dpi = 300, height = 10)’$. 
+The computed aspects of the slopes in Rwanda were divided into eight classes, according to the geographic orientation of the \ac{wesn} and auxiliary combinations (SW-SE-NE-NW). The histogram is presented in Fig. \ref{pic8} below the map. The code included the following commands: $‘tm\_raster(title = "Aspect", palette = "-Spectral", style = "quantile", n = 8, legend.show = T, \\legend.hist = T, legend.hist.z=0,)’ and ‘ tm_compass(type = "rose", position=c("right", "top"), size = 7.0)’$ for compass placement. \\Using the $'tm\_graticules'$ the ticks were added on the maps in Fig. \ref{pic6}, \ref{pic7}, \ref{pic8} and \ref{pic9}: $tm\_graticules(ticks = T, lines = T, col = "azure3", lwd = 1, labels.size = 1.0, labels.rot = c(15, 15), labels.col = "black")$. Final export of the resulting graphics has been done using the following code snippet: $‘tmap_save’ function: \\‘tmap\_save(map4, "Rwanda_Elevation.jpg", dpi = 300, height = 10)’$. 
 	
 \section{Results and Discussion}
 Fig. \ref{pic1} visualises the topography map of Rwanda based on the \ac{gebco}/\ac{srtm} high-resolution dataset. The topography of Rwanda was visualised and estimated by comparing these results with the previous data. The results of the topographic data analysis shown variations from minimum at 806.098 m to maximum at 4359.250 m (East African Ridge) and a statistical evaluation shown mean at 1662.746 m and standard deviation (StdDev) at 358.125 m. The hydrological setting of Rwanda are presented by several lakes that should be briefly noted. The Rweru Lake on the border with Burundi shown very shallow bathymetry not exceeding 2 m. The Ihema Lake is another notable largest lake of Rwanda located on the east of the country on the border with Tanzania, within the marshland of the Kagera River. 
@@ -315,10 +317,10 @@ Finally, the visualised high-quality georeferenced reliable geoinformation on Rw
 
 The existing \ac{gis}-based studies of Rwanda focused on geophysical mapping are restricted to the particular regions. They did not applied \ac{gmt} and R based mapping of the multi-source datasets of \ac{dem}, geoid and gravity grids as thematic map series. Previous existing studies on Rwanda are not indicative of the correlation between the geophysical phenomena of Rwanda. In contrast, this study assessed the effectiveness of R and \ac{gmt} methods in cartography for retrieving the high-resolution data of seismic, topographic and geophysical rasters on Rwanda. In this regards, this paper contributed to the extended multi-disciplinary studies of Rwanda environment, natural and Earth sciences. At the same time, it presented a new methodology of the cartographic data processing using script-based approach for cartographic data processing using a command line from the console. 
 
-\printacronyms[name=Abbreviations, heading=section]
+\printacronyms[name=List of Acronyms, heading=section]
 
 \begin{acknowledgement}
-The author would like to cordially thank the editor and anonymous reviewers of the \emph{Romanian Journal of Physics} for the review, critical suggestions and comments on this study, which improved the earlier version of the manuscript. 
+The author cordially thanks the Editor and the anonymous reviewers of the \emph{Romanian Journal of Physics} for the review, critical suggestions and comments on this study, which improved the earlier version of the manuscript. 
 \end{acknowledgement}
 
 \begin{thebibliography}{99}
